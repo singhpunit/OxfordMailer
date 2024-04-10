@@ -4,18 +4,24 @@ const bodyParser = require('body-parser');
 const user =require("./router/users.js")
 const app = express();
 const PORT = 6000;
-
+const mongoose = require("mongoose")
+const DB_URL = "mongodb://localhost:27017/mu2"
 // Middleware
 app.use(cors()); // Enable CORS
 app.use(bodyParser.json()); // Parse JSON bodies
 app.use(bodyParser.urlencoded({ extended: true })); // Parse URL-encoded bodies
 
-// Routes
-// Define your routes here
+mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+        app.listen(PORT, () => console.log(`Server running on port: ${PORT}`))
+        insretCountry()
+        createAdmin()
+    }
 
-// Start the server
+    )
+    .catch((error) => console.log(error.message))
+
+
 
 app.use("/user",user)
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+
