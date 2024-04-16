@@ -19,13 +19,13 @@ module.exports = {
    }
   },
 
-  createUserTable:async()=>{
-    connection.query(createTableQuery, (err, result) => {
-        if (err) {
-            console.error('Error creating table: ' + err.stack);
-            return;
-        }
-        console.log('Table created successfully');
-    });
-  }
+  allUsers: async (req, res) => {
+    try {
+        let users = await User.find({});
+        res.status(200).json({ list: users });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: "Internal server error", message: err });
+    }
+}
 };
