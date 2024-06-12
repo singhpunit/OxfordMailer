@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const user =require("./router/users.js")
 const app = express();
-const PORT = 6000;
+const PORT = 5000;
 const mongoose = require("mongoose")
 const DB_URL = "mongodb://localhost:27017/mu2"
 // Middleware
