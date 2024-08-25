@@ -3,9 +3,11 @@ const connection = require("../model/userModel.js");
 const mail = require("./mailService.js")
 
 module.exports = {
+
   contactDetails: async (req, res) => {
    try{
     const userData = req.body; // Assuming client sends JSON data
+    console.log('userData',userData)
     let user = await new User(userData)
     user.save()
     res
